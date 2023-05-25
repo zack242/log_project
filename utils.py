@@ -15,8 +15,9 @@ def get_log_date(log_name):
 
 def get_last_7_days(path):
     logs_to_process = os.listdir(path)
-    logs_to_process.sort()
-    return logs_to_process
+    logs_to_process.sort(reverse=True)
+    last_7_logs = logs_to_process[:7]
+    return last_7_logs
 
 
 # Check if a string is a country code
