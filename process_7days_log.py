@@ -38,11 +38,14 @@ def process_7days_logs(log_path=os.environ.get("PATH_LOGS")):
 
 
 def process_top_song(dir, type, date):
-    data = os.listdir(dir)
-    data.sort()
+    filesnames = os.listdir(dir)
+    filesnames.sort()
     final_dict = {}
 
-    for file in data:
+    # only keep the last 7 days of filenames
+    filesnames = filesnames[-7:]
+
+    for file in filesnames:
         loaded_dict = load_dict_from_file(os.path.join(dir, file))
 
         # Iterate over each user in the loaded_dict
