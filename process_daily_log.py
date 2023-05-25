@@ -1,13 +1,21 @@
 import psutil
+import logging
 from collections import defaultdict
 from utils import is_country_code
+from dotenv import load_dotenv
+import os
 
+# Load environment variables from .env file
+load_dotenv()
 
-"""
-    This function processes a daily log file and returns two dictionaries:
-    input: log_files (string) - name of the log file
-    output: dict_country (dictionary) - dictionary of countries
-"""
+BATCH_SIZE = int(os.environ.get("BATCH_SIZE"))
+
+# Configure logging settings
+logging.basicConfig(
+    filename="log/daemon.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
 
 
 def process_daily_log(log_files):
@@ -18,7 +26,7 @@ def process_daily_log(log_files):
     # We iterate through the log file
     with open("logs/" + log_files, "r") as f:
         lines = f.readlines()
-        batch_size = 1_000_000
+        batch_size = BATCH_SIZE
         num_lines = len(lines)
         num_batches = (num_lines // batch_size) + 1
 
@@ -44,10 +52,12 @@ def process_daily_log(log_files):
                     dict_users[user_id][song_id] += 1
 
                 # Monitor memory usage after processing a certain number of lines
-                if i % 100000 == 0:
+                if i % BATCH_SIZE == 0:
                     memory_usage = psutil.Process().memory_info().rss / (
                         1024**3
                     )  # Memory in GB
-                    print(f"Processed {i} lines. Memory Usage: {memory_usage:.2f} GB")
+                    logging.info(
+                        f"Processed {i} lines. Memory Usage: {memory_usage:.2f} GB"
+                    )
 
     return dict_country, dict_users

@@ -45,6 +45,7 @@ def observe_directory():
 
 
 if __name__ == "__main__":
-    # We run process_7days_log.py a first time to process the logs that are already in the directory
+    # We run process_7days_log.py a first time to process the logs
+    # that are already in the directory
     os.system("python process_7days_log.py")
     observe_directory()

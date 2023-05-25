@@ -14,9 +14,9 @@ def get_log_date(log_name):
 
 
 def get_last_7_days(path):
-    logs_to_process = os.listdir(path)
+    logs_to_process = [file for file in os.listdir(path) if file != ".DS_Store"]
     logs_to_process.sort(reverse=True)
-    last_7_logs = logs_to_process[:7]
+    last_7_logs = logs_to_process[:7] if len(logs_to_process) >= 7 else logs_to_process
     return last_7_logs
 
 
