@@ -3,7 +3,6 @@
 *.pyc
 __pycache__
 *.ipynb
-*.txt
 tmp_storage
 logs
 test_logs
