@@ -17,6 +17,13 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
+""" 
+    This function processes a single log file and returns two dictionaries, one for countries and one for users.
+    The keys of the dictionaries are the country/user ids and the values are dictionaries of song ids and their counts.
+    input: log_files (string) - the name of the log file to process
+    output: dict_country (dictionary) - a dictionary of countries and their songs
+"""
+
 
 def process_daily_log(log_files):
     # We initialize two dictionaries, one for countries and one for users

@@ -8,6 +8,15 @@ from process_daily_log import process_daily_log
 load_dotenv()
 
 
+""" 
+    This function processes the last 7 days of logs and saves the results in a temporary directory.
+    It then calls the process_top_song function to process the top 50 songs for each country and user.
+    The results are saved in the results directory.
+    input: log_path (string) - the path to the log files
+    output: None
+"""
+
+
 def process_7days_logs(log_path=os.environ.get("PATH_LOGS")):
     logs = get_last_7_days(log_path)
     path_storage = "tmp_storage"
