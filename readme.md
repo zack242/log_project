@@ -7,7 +7,7 @@ This repository hosts a Python script suite designed to process and analyze log 
 1. Clone the repository.
 
 ```bash
-git clone https://github.com/your-github-username/music-streaming-log-processing
+git clone https://github.com/zack242/log_project
 ```
 
 2. Navigate to the project directory
