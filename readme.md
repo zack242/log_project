@@ -23,7 +23,8 @@ pip install -r requirements.txt
 ```
 4. Setup the envirnoment
 
-Before running the script, you need to set up the .env file. Open the .env file and provide the following information:
+Before running the script, you need to set up the .env file.
+Open the .env file and provide the following information:
 
 - Set the LOGS_DIR_PATH variable to the path of the logs directory.
 - Set the RESULTS_DIR_PATH variable to the path where you want to store the results.
@@ -34,6 +35,11 @@ Make sure to save the changes after modifying the .env file.
 ```bash
 python main.py 
 ```
+
+6. Setup the logs 
+
+Add files into the logs dir
+
 ## Usage
 
 The main scripts of this project are main.py, process_7days_log.py, process_daily_log.py, and a set of utility functions.
