@@ -13,7 +13,7 @@ git clone https://github.com/zack242/log_project
 2. Navigate to the project directory
 
 ```bash
-cd music-streaming-log-processing
+cd log_project
 ```
 
 3. Install the required Python packages.
@@ -21,12 +21,24 @@ cd music-streaming-log-processing
 ```bash
 pip install -r requirements.txt
 ```
+4. Setup the envirnoment
 
+Before running the script, you need to set up the .env file. Open the .env file and provide the following information:
+
+- Set the LOGS_DIR_PATH variable to the path of the logs directory.
+- Set the RESULTS_DIR_PATH variable to the path where you want to store the results.
+- Optionally, you can set the BATCH_SIZE variable to specify the batch size for processing the log files.
+Make sure to save the changes after modifying the .env file.
+
+5. Run main.py
+```bash
+python main.py 
+```
 ## Usage
 
-The main scripts of this project are watch_dogs.py, process_7days_log.py, process_daily_log.py, and a set of utility functions.
+The main scripts of this project are main.py, process_7days_log.py, process_daily_log.py, and a set of utility functions.
 
-- The watch_dogs.py script observes the log files directory and runs process_7days_log.py whenever a new log file is added. The log files must follow the format listen-YYYYMMDD.log. It first processes the log files that are already in the directory and then continues to process any new files as they are added.
+- The main.py script observes the log files directory and runs process_7days_log.py whenever a new log file is added. The log files must follow the format listen-YYYYMMDD.log. It first processes the log files that are already in the directory and then continues to process any new files as they are added.
 
 - The process_7days_log.py script processes the logs from the last 7 days. If a log has already been processed, it will not process it again, which makes the system more efficient. For every unprocessed log, it calculates the top songs by country and by user and stores these results in temporary storage for further processing (tmp_storage directory).
 
@@ -38,7 +50,7 @@ The process_7days_logs function retrieves the last seven log files from the logs
 
 ## How to run it every day to compute the files.
 
-To run the scripts every day and compute the files, you can set up a watch file using the watchdog library. This system will observe the log directory, and when a new file is added, it will automatically process the script to get the top songs by country and user. To further automate the process, you can set up the watch_dogs script as a background daemon that runs autonomously. It can periodically check if a new file has been added and compute the results accordingly.
+To run the scripts every day and compute the files, our main.py already implements a watchdog. This script observes the log directory, and when a new file is added, it will automatically process the script to get the top songs by country and user. To further automate the process, we can set up the main.py script as a background daemon that runs autonomously. It can periodically check if a new file has been added and compute the results accordingly.
 
 ## To go further
 
