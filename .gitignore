@@ -1,1 +1,11 @@
 *log
+.vscode/settings.json
+*.pyc
+__pycache__
+*.ipynb
+*.txt
+tmp_storage
+logs
+test_logs
+.DS_Store
+
